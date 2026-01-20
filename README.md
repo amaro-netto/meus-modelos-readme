@@ -120,38 +120,41 @@ Todas as Tecnologias Utilizadas:
 > [!NOTE]
 > O código do front-end encontra-se em funcionamento e integrado ao backend. Documentação e melhorias visuais poderão ser adicionadas nas próximas iterações do projeto.
 <p>&nbsp;</p>
+## 🧠 **Metodologia de Data Science**
 
 ## 📁 **Estrutura do Projeto & Visão Geral do Repositório**
 
 ```
 hackathon-sentimentapi-analytics
 │
-├── backend/                # API Java (Spring Boot)
-│   ├── src/...
-│   └── pom.xml
+├── backend/                # API Gateway e Regras de Negócio (Java/Spring)
+│   ├── src/...             # Controllers, Services, SecurityConfig, DTOs
+│   ├── pom.xml
+│   └── Dockerfile          # Multi-stage build (Maven + OpenJDK 21)
 │
-├── data/                   # Serviço de Machine Learning (Python)
+├── data/                   # Microsserviço de ML (Python/FastAPI)
 │   ├── notebooks/          # Jupyter Notebooks
 │   ├── model/              # Modelo treinado (.joblib)
-│   ├── app.py              # FastAPI
-│   └── requirements.txt    # Dependências Python
+│   ├── app.py              # API de Predição e Langdetect
+│   ├── requirements.txt    # Dependências Python
+│   └── Dockerfile          # Python 3.11 Slim (Otimizado)
 │
-├── frontend/               # Interface Web
+├── frontend/               # Interface Web (HTML/JS/CSS)
 │   ├── index.html
 │   ├── server.py
 │   └── src/
 │       ├── assets/
 │       │   ├── css/        # Estilos
-│       │   └── js/         # Scripts
-│       └── pages/          # Páginas HTML
+│       │   └── js/         # Lógica de consumo da API (Fetch)
+│       └── pages/          # Telas (Login, Dashboard, Análise)
 │
 ├── docs/                   # Documentação
 │   └── fluxogramas/
 │       ├── fluxoCadastro.png
 │       ├── fluxoLogin.png
-│       ├── fluxoAnalise.png
-│       └── INFO.TXT
+│       └── fluxoAnalise.png
 │
+├── docker-compose.yml      # Orquestração dos serviços e rede interna
 └── README.md               # Documentação principal do projeto
 ```
 <p>&nbsp;</p>
@@ -187,20 +190,9 @@ Este projeto é composto por dois serviços principais que devem ser executados 
 cd data && pip install -r requirements.txt && uvicorn app:app --reload
 ```
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="50%">Serviço</th>
-      <th width="50%">Documentação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>http://localhost:8000</code></td>
-      <td><code>http://localhost:8000/docs</code></td>
-    </tr>
-  </tbody>
-</table>
+| Serviço | Documentação |
+| :--- | :--- |
+| `http://localhost:8000` | `http://localhost:8000/docs` |
 
 #### 2. Executando o Backend (Java + Spring Boot)
 *Responsável por expor a API REST e integrar com o serviço Python.*
@@ -209,20 +201,9 @@ cd data && pip install -r requirements.txt && uvicorn app:app --reload
 ```bash
 cd backend && mvn spring-boot:run
 ```
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="50%">Serviço</th>
-      <th width="50%">Documentação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>http://localhost:8080</code></td>
-      <td><code>http://localhost:8080/swagger-ui.html</code></td>
-    </tr>
-  </tbody>
-</table>
+| Serviço | Documentação |
+| :--- | :--- |
+| `http://localhost:8080` | `http://localhost:8080/swagger-ui.html` |
 
 #### 3. Encerrando a Aplicação.
 > Fazer em ambos os terminais (Python e Java).
@@ -261,29 +242,80 @@ git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git &&
 ```
 *Isso irá compilar o Java, construir a imagem Python, subir o banco PostgreSQL e configurar a rede interna.*
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="33%">Frontend</th>
-      <th width="33%">API Java (Swagger)</th>
-      <th width="33%">API Python (Docs)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>http://localhost:80</code></td>
-      <td><code>http://localhost:8080/swagger-ui.html</code></td>
-      <td><code>http://localhost:8000/docs</code></td>
-    </tr>
-  </tbody>
-</table>
+| Frontend | API Java (Swagger) | API Python (Docs) |
+| :--- | :--- | :--- |
+| `http://localhost:80` | `http://localhost:8080/swagger-ui.html` | `http://localhost:8000/docs` |
 <p>&nbsp;</p>
 
-## 📊 Fluxogramas do Sistema
+## 🔌 Documentação da API (Endpoints)
+A API segue os padrões RESTful e está documentada via Swagger/OpenAPI. Abaixo estão as rotas principais para integração.
 
+#### Autenticação & Usuários
+| Método | Endpoint | Descrição | Nível de Acesso |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/auth/register` | Cadastra um novo usuário no sistema. | Público |
+| `POST` | `/auth/login` | Autentica credenciais e retorna o Bearer Token. | Público |
+
+#### Core Business (Análise)
+| Método | Endpoint | Descrição | Nível de Acesso |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/analise` | Envia um texto para processamento. Retorna o Sentimento, Nível de Confiança (%) e Idioma detectado. | Autenticado |
+| `GET` | `/analise/historico` | Retorna todo o histórico de análises realizadas pelo usuário logado. | Autenticado |
+<p>&nbsp;</p>
+
+## 🔌 **Exemplos de Requisição e Resposta (JSON)**
+Para facilitar a integração, abaixo estão os exemplos reais de uso da API documentados no Swagger.
+### **1. Realizar Análise (`POST /analise`)**
+
+Envia um texto cru e recebe a classificação enriquecida com metadados.
+**Requisição:**
+
+```json
+{
+  "texto": "O prazo de entrega foi cumprido com excelência, adorei!"
+}
+```
+**Resposta (200 OK):**
+```json
+{
+  "sentimento": "Positivo",
+  "probabilidade": 0.9854,
+  "idioma": "PT",
+  "data_analise": "2026-01-18T14:30:00Z"
+}
+```
+> [!NOTE]
+> O campo idioma é gerado dinamicamente pela biblioteca langdetect no serviço Python.
+<p>&nbsp;</p>
+
+### **2. Histórico (`GET /analise/historico`)**
+Recupera os dados persistidos no PostgreSQL para popular o Dashboard.
+**Resposta (200 OK):**
+```json
+[
+  {
+    "id": 153,
+    "texto": "Não gostei do atendimento.",
+    "sentimento": "Negativo",
+    "probabilidade": 0.85,
+    "idioma": "PT",
+    "criado_em": "2026-01-18T10:00:00Z"
+  },
+  {
+    "id": 154,
+    "texto": "Me encanta este producto.",
+    "sentimento": "Positivo",
+    "probabilidade": 0.99,
+    "idioma": "ES",
+    "criado_em": "2026-01-18T10:05:00Z"
+  }
+]
+```
+
+## 📊 Fluxogramas do Sistema
 Abaixo estão os fluxos principais da aplicação:
 
-#### 📊 **Fluxo de Dados (Pipeline)**
+#### **Pipeline**
 
 ```mermaid
 sequenceDiagram
