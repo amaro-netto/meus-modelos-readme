@@ -22,8 +22,6 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-Security-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 
----
-
 ### **Índice**
 - Descrição do Projeto
 - Front-end
@@ -33,7 +31,6 @@
 - Fluxogramas do Sistema
 - Equipe
 
----
 
 ### 📝 **Descrição do Projeto**
 
@@ -75,7 +72,6 @@ O projeto adota uma arquitetura de **Microserviços Conteinerizados**, garantind
 | :--- | :--- | :--- |
 | • Java 17 + Spring Boot 3<br>• Spring Web (REST) - Endpoints<br>• Spring Security (JWT)<br>• Spring Validation<br>• Lombok<br>• OpenFeign (HTTP client → Python)<br>• H2 Database (em memória)<br>• JUnit + Mockito (testes)<br>• Swagger/OpenAPI (Docs) | • Python 3.10<br>• Pandas, NumPy, Scikit-learn<br>• Joblib (persistência)<br>• FastAPI + Uvicorn<br>• Datasets (Hugging Face/Kaggle)<br>• Imbalanced-learn<br>• NLTK / SpaCy (NLP)<br>• Matplotlib / Seaborn | • Git / GitHub (Monorepo)<br>• Docker + Docker Compose<br>• GitHub Actions (CI/CD)<br>• PlantUML (fluxogramas) |
 
----
 
 ## 📊 **Fluxo de Dados (Pipeline)**
 
@@ -173,7 +169,7 @@ cd data && pip install -r requirements.txt && uvicorn app:app --reload
 
 | Serviço | Documentação |
 | :--- | :--- |
-| http://localhost:8000 | http://localhost:8000/docs |
+| `http://localhost:8000` | `http://localhost:8000/docs` |
 
 #### ☕ 2. Executando o Backend (Java + Spring Boot)
 Responsável por expor a API REST e integrar com o serviço Python.
@@ -184,7 +180,7 @@ cd backend && mvn spring-boot:run
 ```
 | Serviço | Documentação |
 | :--- | :--- |
-| http://localhost:8080 | http://localhost:8080/swagger-ui.html |
+| `http://localhost:8080` | `http://localhost:8080/swagger-ui.html` |
  
 
 #### 🔁 Fluxo de Funcionamento
@@ -215,22 +211,16 @@ O projeto foi desenhado para ser executado com um único comando, abstraindo a c
 
 #### **Execute a aplicação:**
 
-1.  **Abra um terminal e rode o comando abaixo para acessar baixar o repositório, entrar no diretório e sobe os containers:**
-    ```bash
-    git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git && cd hackathon-sentimentapi-analytics && docker-compose up --build -d
-    ```
+**Abra um terminal e rode o comando abaixo para acessar baixar o repositório, entrar no diretório e sobe os containers (Build & Run):**
 
-2.  **Suba a aplicação (Build & Run):**
-    ```bash
-    docker-compose up --build -d
-    ```
-    *Isso irá compilar o Java, construir a imagem Python, subir o banco PostgreSQL e configurar a rede interna.*
+```bash
+git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git && cd hackathon-sentimentapi-analytics && docker-compose up --build -d
+```
+*Isso irá compilar o Java, construir a imagem Python, subir o banco PostgreSQL e configurar a rede interna.*
 
-3.  **Acesse o Sistema:**
-    * **Frontend (Aplicação):** `http://localhost:80` (Login e Dashboard)
-    * **API Java (Swagger):** `http://localhost:8080/swagger-ui.html`
-    * **API Python (Docs):** `http://localhost:8000/docs`
-
+| Frontend | API Java (Swagger) | API Python (Docs) |
+| :--- | :--- | :--- |
+| `http://localhost:80` | `http://localhost:8080/swagger-ui.html` | `http://localhost:8000/docs` |
 
 ## 📊 Fluxogramas do Sistema
 
@@ -301,12 +291,13 @@ M --> Z
 H -- Não --> N["Retornar um JSON<br/>(Aleatório)"]
 N --> M
 ```
----
 
 ### 👥 **Equipe DevstechOne**
 Este projeto foi desenvolvido com orgulho durante o Hackathon ONE.
 
 <a href="https://github.com/alessandroapolinario" title="Alessandro Apolin"><img width="160" src="https://i.ibb.co/JWjKwMx9/Alessandro-Apolin-rio.png"/></a> <a href="https://github.com/amaro-netto" title="Amaro Netto"><img width="160" src="https://i.ibb.co/Gf4bW8GB/backend-java.png"/></a> <a href="https://github.com/brunorm86" title="Bruno Machado"><img width="160" src="https://i.ibb.co/cc3gb9dT/bruno.png"/></a> <a href="https://github.com/MicheleLescano" title="Michele Lescano"><img width="160" src="https://i.ibb.co/gbV6q2f2/michele.png"/></a> <a href="https://github.com/Rshinna" title="Rodrigo Franco"><img width="160" src="https://i.ibb.co/jZ9TJ416/rodrigo.png"/></a>
 
-
-© 2026 InsightSent - Desenvolvido por DevstechOne.
+----
+<div align="center">
+  <strong>© 2026 InsightSent</strong> - Desenvolvido por <em>DevstechOne</em>.
+</div>
