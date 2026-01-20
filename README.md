@@ -21,8 +21,9 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-Security-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
+<p>&nbsp;</p>
 
-### **Índice**
+## **Índice**
 - Descrição do Projeto
 - Front-end
 - Tecnologias Utilizadas
@@ -30,9 +31,9 @@
 - Execução do Projeto
 - Fluxogramas do Sistema
 - Equipe
+<p>&nbsp;</p>
 
-
-### 📝 **Descrição do Projeto**
+## 📝 **Descrição do Projeto**
 
 O **InsightSent** é uma plataforma de inteligência de dados desenvolvida para transformar o caos de feedbacks não estruturados em decisões estratégicas. 
 
@@ -49,33 +50,35 @@ Em um cenário onde **80% dos feedbacks de clientes são ignorados** por incapac
 
 O projeto adota uma arquitetura de **Microserviços Conteinerizados**, garantindo escalabilidade e isolamento de responsabilidades.
 
-### **1. Backend (O Maestro)**
+#### **1. Backend (O Maestro)**
 * **Tecnologia:** Java 21 + Spring Boot 3.4.5.
 * **Função:** Orquestração de chamadas, gestão de segurança (Spring Security), validação de dados e comunicação com o banco.
 * **Comunicação:** Utiliza **OpenFeign** para comunicação HTTP de baixa latência com o serviço de IA.
 
-### **2. Data Science (O Cérebro)**
+#### **2. Data Science (O Cérebro)**
 * **Tecnologia:** Python 3.11 + FastAPI + Uvicorn.
 * **Modelo:** Pipeline de Machine Learning utilizando **TF-IDF Vectorizer** (para transformar texto em números) e **Regressão Logística** (para classificação).
 * **Treinamento:** Modelo treinado com um dataset unificado de ~470.000 avaliações (Olist, B2W e Amazon Reviews).
 
-### **3. Frontend (A Interface)**
+#### **3. Frontend (A Interface)**
 * **Tecnologia:** Vanilla JavaScript (ES6+), HTML5 e CSS3.
 * **Design:** Interface limpa, responsiva e focada na experiência do usuário (UX), comunicando-se via Fetch API com o Backend.
 
-### **4. Infraestrutura de Dados**
+#### **4. Infraestrutura de Dados**
 * **Banco de Dados:** PostgreSQL 15 rodando em container Docker.
 * **Persistência:** Armazena usuários, logs de auditoria e histórico completo das análises para geração de insights futuros.
+<p>&nbsp;</p>
   
-**Todas as Tecnologias Utilizadas**
+Todas as Tecnologias Utilizadas:
 | Backend (Java/Spring) | Data Science (Python) | Infra/DevOps |
 | :--- | :--- | :--- |
 | • Java 17 + Spring Boot 3<br>• Spring Web (REST) - Endpoints<br>• Spring Security (JWT)<br>• Spring Validation<br>• Lombok<br>• OpenFeign (HTTP client → Python)<br>• H2 Database (em memória)<br>• JUnit + Mockito (testes)<br>• Swagger/OpenAPI (Docs) | • Python 3.10<br>• Pandas, NumPy, Scikit-learn<br>• Joblib (persistência)<br>• FastAPI + Uvicorn<br>• Datasets (Hugging Face/Kaggle)<br>• Imbalanced-learn<br>• NLTK / SpaCy (NLP)<br>• Matplotlib / Seaborn | • Git / GitHub (Monorepo)<br>• Docker + Docker Compose<br>• GitHub Actions (CI/CD)<br>• PlantUML (fluxogramas) |
 
 > [!NOTE]
 > O código do front-end encontra-se em funcionamento e integrado ao backend. Documentação e melhorias visuais poderão ser adicionadas nas próximas iterações do projeto.
+<p>&nbsp;</p>
 
-### 📁 **Estrutura do Projeto & Visão Geral do Repositório**
+## 📁 **Estrutura do Projeto & Visão Geral do Repositório**
 
 ```
 hackathon-sentimentapi-analytics
@@ -108,17 +111,15 @@ hackathon-sentimentapi-analytics
 │
 └── README.md               # Documentação principal do projeto
 ```
+<p>&nbsp;</p>
 
+## 🛠️ Execução do Projeto
 
-## Execução do Projeto
-
-### Como Executar **(VSCODE)**
+### Como Executar no **(VSCODE)**
 
 > [!IMPORTANT]
-> O serviço Python **deve estar em execução antes** de iniciar o backend Java.
-> 
-> O backend Java depende do serviço Python estar em execução.
-
+> O serviço Python **deve estar em execução antes** de iniciar o backend Java. O backend Java depende do serviço Python estar em execução.
+<p>&nbsp;</p>
 
 Este projeto é composto por dois serviços principais que devem ser executados separadamente:
 
@@ -128,17 +129,17 @@ Este projeto é composto por dois serviços principais que devem ser executados 
 
 #### Pré-requisitos
 
-#### **Certifique-se de ter instalado:**
+> Certifique-se de ter instalado:
 
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.8%2B-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 
-#### 1. Executando o Serviço de Machine Learning (Python)
-Responsável por classificar o sentimento dos feedbacks.
+#### 1. Executando o Serviço de Machine Learning (Python):
+*Responsável por classificar o sentimento dos feedbacks.*
 
-Abra um terminal na raiz do projeto e rode o comando abaixo para acessar a pasta, instalar as dependências e rodar a aplicação:
+> Abra um terminal na raiz do projeto e rode o comando abaixo para acessar a pasta, instalar as dependências e rodar a aplicação:
 ```bash
 cd data && pip install -r requirements.txt && uvicorn app:app --reload
 ```
@@ -147,19 +148,25 @@ cd data && pip install -r requirements.txt && uvicorn app:app --reload
 | :--- | :--- |
 | `http://localhost:8000` | `http://localhost:8000/docs` |
 
-#### ☕ 2. Executando o Backend (Java + Spring Boot)
-Responsável por expor a API REST e integrar com o serviço Python.
+#### 2. Executando o Backend (Java + Spring Boot)
+*Responsável por expor a API REST e integrar com o serviço Python.*
 
-Abra outro terminal na raiz do projeto e rode o comando abaixo para acessar a pasta e rodar a aplicação:
+> Abra outro terminal na raiz do projeto e rode o comando abaixo para acessar a pasta e rodar a aplicação:
 ```bash
 cd backend && mvn spring-boot:run
 ```
 | Serviço | Documentação |
 | :--- | :--- |
 | `http://localhost:8080` | `http://localhost:8080/swagger-ui.html` |
- 
 
-#### 🔁 Fluxo de Funcionamento
+#### 3. Encerrando a Aplicação.
+> Fazer em ambos os terminais (Python e Java).
+```bash
+CTRL + C
+```
+<p>&nbsp;</p>
+
+#### Fluxo de Funcionamento
 
 1. O cliente envia um feedback para a API Java
 
@@ -168,27 +175,22 @@ cd backend && mvn spring-boot:run
 3. O modelo de Machine Learning classifica o sentimento
 
 4. O resultado é retornado e persistido no banco H2
+<p>&nbsp;</p>
 
-#### 🛑 Encerrando a Aplicação
 
-```bash
-CTRL + C
-```
-em ambos os terminais (Python e Java).
-
-### Como Executar **(Docker)**
+### Como Executar no **(Docker)**
 
 O projeto foi desenhado para ser executado com um único comando, abstraindo a complexidade de configuração de ambientes.
 
-#### **Certifique-se de ter instalado:**
+> Certifique-se de ter instalado:
+
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 
 #### **Execute a aplicação:**
 
-**Abra um terminal e rode o comando abaixo para acessar baixar o repositório, entrar no diretório e sobe os containers (Build & Run):**
-
+> Abra um terminal e rode o comando abaixo para acessar baixar o repositório, entrar no diretório e sobe os containers (Build & Run):
 ```bash
 git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git && cd hackathon-sentimentapi-analytics && docker-compose up --build -d
 ```
@@ -197,6 +199,7 @@ git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git &&
 | Frontend | API Java (Swagger) | API Python (Docs) |
 | :--- | :--- | :--- |
 | `http://localhost:80` | `http://localhost:8080/swagger-ui.html` | `http://localhost:8000/docs` |
+<p>&nbsp;</p>
 
 ## 📊 Fluxogramas do Sistema
 
@@ -258,11 +261,13 @@ sequenceDiagram
     </td>
   </tr>
 </table>
+<p>&nbsp;</p>
 
 ### 👥 **Equipe DevstechOne**
-Este projeto foi desenvolvido com orgulho durante o Hackathon ONE.
+Este projeto foi desenvolvido com orgulho durante o Hackathon ONE II - Brasil. `📅 08 Dez 2025 - 21 Jan 2026`
 
 <a href="https://github.com/alessandroapolinario" title="Alessandro Apolin"><img width="160" src="https://i.ibb.co/JWjKwMx9/Alessandro-Apolin-rio.png"/></a> <a href="https://github.com/amaro-netto" title="Amaro Netto"><img width="160" src="https://i.ibb.co/Gf4bW8GB/backend-java.png"/></a> <a href="https://github.com/brunorm86" title="Bruno Machado"><img width="160" src="https://i.ibb.co/cc3gb9dT/bruno.png"/></a> <a href="https://github.com/MicheleLescano" title="Michele Lescano"><img width="160" src="https://i.ibb.co/gbV6q2f2/michele.png"/></a> <a href="https://github.com/Rshinna" title="Rodrigo Franco"><img width="160" src="https://i.ibb.co/jZ9TJ416/rodrigo.png"/></a>
+<p>&nbsp;</p>
 
 ----
 <div align="center">
