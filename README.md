@@ -156,7 +156,7 @@ Este projeto é composto por dois serviços principais que devem ser executados 
 
 #### Pré-requisitos
 
-Certifique-se de ter instalado:
+#### **Certifique-se de ter instalado:**
 
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.8%2B-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
@@ -208,15 +208,16 @@ em ambos os terminais (Python e Java).
 
 O projeto foi desenhado para ser executado com um único comando, abstraindo a complexidade de configuração de ambientes.
 
-#### **Pré-requisitos**
-* Docker e Docker Compose instalados.
+#### **Certifique-se de ter instalado:**
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-#### **Passo a Passo**
 
-1.  **Clone o repositório:**
+#### **Execute a aplicação:**
+
+1.  **Abra um terminal e rode o comando abaixo para acessar baixar o repositório, entrar no diretório e sobe os containers:**
     ```bash
-    git clone [https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git](https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git)
-    cd hackathon-sentimentapi-analytics
+    git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git && cd hackathon-sentimentapi-analytics && docker-compose up --build -d
     ```
 
 2.  **Suba a aplicação (Build & Run):**
