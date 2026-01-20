@@ -25,9 +25,11 @@
 
 ## **Índice**
 - Descrição do Projeto
-- Front-end
-- Tecnologias Utilizadas
-- Estrutura do Projeto
+- Arquitetura da Solução
+- Metodologia de Data Science
+- Documentação da API (Endpoints)
+- Exemplos de Requisição e Resposta (JSON)
+- Estrutura do Projeto & Visão Geral do Repositório
 - Execução do Projeto
 - Fluxogramas do Sistema
 - Equipe
