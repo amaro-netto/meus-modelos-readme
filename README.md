@@ -241,12 +241,9 @@ hackathon-sentimentapi-analytics
 
 > [!IMPORTANT]
 > O serviço Python **deve estar em execução antes** de iniciar o backend Java. O backend Java depende do serviço Python estar em execução.
-<p>&nbsp;</p>
-
-Este projeto é composto por dois serviços principais que devem ser executados separadamente:
-
-- Serviço de Machine Learning (Python + FastAPI)
-- API Backend (Java + Spring Boot)
+> Este projeto é composto por dois serviços principais que devem ser executados separadamente:
+> - Serviço de Machine Learning (Python + FastAPI)
+> - API Backend (Java + Spring Boot)
 
 
 #### Pré-requisitos
