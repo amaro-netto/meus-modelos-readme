@@ -309,7 +309,7 @@ O projeto foi desenhado para ser executado com um único comando, abstraindo a c
 
 #### **Execute a aplicação:**
 
-> Abra um terminal e rode o comando abaixo para acessar baixar o repositório, entrar no diretório e sobe os containers (Build & Run):
+> Abra um terminal e rode o comando abaixo para baixar o repositório, entrar no diretório e subir os containers (Build & Run):
 ```bash
 git clone https://github.com/amaro-netto/hackathon-sentimentapi-analytics.git && cd hackathon-sentimentapi-analytics && docker-compose up --build -d
 ```
