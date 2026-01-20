@@ -148,7 +148,7 @@ A API segue os padrões RESTful e está documentada via Swagger/OpenAPI. Abaixo 
 
 ## 🔌 **Exemplos de Requisição e Resposta (JSON)**
 Para facilitar a integração, abaixo estão os exemplos reais de uso da API documentados no Swagger.
-### **1. Realizar Análise (`POST /analise`)**
+#### **1. Realizar Análise (`POST /analise`)**
 
 Envia um texto cru e recebe a classificação enriquecida com metadados.
 **Requisição:**
@@ -171,7 +171,7 @@ Envia um texto cru e recebe a classificação enriquecida com metadados.
 > O campo idioma é gerado dinamicamente pela biblioteca langdetect no serviço Python.
 <p>&nbsp;</p>
 
-### **2. Histórico (`GET /analise/historico`)**
+#### **2. Histórico (`GET /analise/historico`)**
 Recupera os dados persistidos no PostgreSQL para popular o Dashboard.
 **Resposta (200 OK):**
 ```json
